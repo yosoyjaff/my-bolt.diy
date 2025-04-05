@@ -6,6 +6,11 @@ services:
     ports:
       - "3000:5173"
     environment:
+      - TRAEFIK_USER: ${TRAEFIK_USER:-admin}
+      - TRAEFIK_PASSWORD_HASH: ${TRAEFIK_PASSWORD_HASH}
+    labels:
+      - "traefik.http.middlewares.bolt-auth.basicauth.users=${TRAEFIK_USER}:${TRAEFIK_PASSWORD_HASH}"
+    environment:
       - NODE_ENV=production
       - PORT=5173
       - GROQ_API_KEY=${GROQ_API_KEY}
