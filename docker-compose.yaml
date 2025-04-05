@@ -9,10 +9,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    ports:
+      - "3000:5173"
     environment:
-      - SERVICE_FQDN_APP_3000
-      - NODE_ENV=production
-      - PORT=5173
       - GROQ_API_KEY=${GROQ_API_KEY}
       - HuggingFace_API_KEY=${HuggingFace_API_KEY}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
@@ -29,7 +28,7 @@ services:
       - TRAEFIK_USER=${TRAEFIK_USER:-admin}
       - TRAEFIK_PASSWORD_HASH=${TRAEFIK_PASSWORD_HASH}
     labels:
-      - "traefik.http.middlewares.bolt-auth.basicauth.users=${TRAEFIK_USER}:${TRAEFIK_PASSWORD_HASH}"
+      - "traefik.http.middlewares.bolt-auth.basicauth.users=admin:$2y$10$oSF3jOwcSHJ1DoAjggg9huZJ9w5OjJKciKTlVyXX8dSwU3DBMYdZ2"
     volumes:
       - app-data:/app/data
     healthcheck:
