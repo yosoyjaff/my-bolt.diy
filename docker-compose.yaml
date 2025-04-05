@@ -28,7 +28,7 @@ services:
       - TRAEFIK_USER=${TRAEFIK_USER:-admin}
       - TRAEFIK_PASSWORD_HASH=${TRAEFIK_PASSWORD_HASH}
     labels:
-      - "traefik.http.middlewares.bolt-auth.basicauth.users=admin:$2y$10$oSF3jOwcSHJ1DoAjggg9huZJ9w5OjJKciKTlVyXX8dSwU3DBMYdZ2"
+      - traefik.http.middlewares.app.basicauth.users=admin:$2y$10$oSF3jOwcSHJ1DoAjggg9huZJ9w5OjJKciKTlVyXX8dSwU3DBMYdZ2
     volumes:
       - app-data:/app/data
     healthcheck:
